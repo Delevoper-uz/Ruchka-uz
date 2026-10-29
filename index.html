@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruchka_uz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <i class="fa-solid fa-pen-nib"></i>
+            <span>Ruchka Uz</span>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="active">Bosh sahifa</a>
+            <a href="#shop">Do'kon</a>
+            <a href="#history">Tarix</a>
+            <a href="#delivery">Yetkazib berish</a>
+            <a href="#contact">Aloqa</a>
+        </nav>
+
+        <div class="header-actions">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" placeholder="Ruchkalarni qidirish...">
+            </div>
+
+            <div class="cart-icon" id="cartBtn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </div>
+
+            <div class="profile-actions-inline">
+                <div class="dropdown-wrapper">
+                    <button class="icon-btn" id="ordersBtn" title="Buyurtmalarim">
+                        <i class="fa-solid fa-box"></i>
+                    </button>
+                    <div class="dropdown-menu" id="ordersDropdown">
+                        <h4>Aktiv buyurtmalar</h4>
+                        <div class="dropdown-item">
+                            <i class="fa-solid fa-truck-fast"></i>
+                            <div>
+                                <strong>#1024-Buyurtma</strong>
+                                <p>Yo'lda (Kuryerda)</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-item">
+                            <i class="fa-solid fa-check"></i>
+                            <div>
+                                <strong>#0988-Buyurtma</strong>
+                                <p>Yetkazib berilgan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dropdown-wrapper">
+                    <button class="icon-btn" id="settingsBtn" title="Sozlamalar">
+                        <i class="fa-solid fa-gear"></i>
+                    </button>
+                    <div class="dropdown-menu" id="settingsDropdown">
+                        <h4>Sozlamalar</h4>
+                        <a href="#" class="dropdown-link"><i class="fa-regular fa-user"></i> Profil ma'lumotlari</a>
+                        <a href="#" class="dropdown-link"><i class="fa-solid fa-bell"></i> Bildirishnomalar</a>
+                        <a href="#" class="dropdown-link"><i class="fa-solid fa-globe"></i> Til: O'zbekcha</a>
+                    </div>
+                </div>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Sizning savatchangiz</h3>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Jami:</span>
+                <span id="cartTotalSum">0 so'm</span>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">Rasmiylashtirish</button>
+        </div>
+    </aside>
+
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-card">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalContent"></div>
+        </div>
+    </div>
+
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <span class="badge">Premium Yozuv Asboblari</span>
+            <h1>Mukammal Fikrlar Uchun Mukammal Ruchkalar</h1>
+            <p>Elegantsiya, qulaylik va yuqori sifat birlashgan joy. Har bir chiziq va har bir so'zda betakror uslubni his eting.</p>
+            <div class="hero-buttons">
+                <a href="#shop" class="btn btn-primary">Xaridni boshlash</a>
+                <a href="#shop" class="btn btn-outline">Barcha mahsulotlar</a>
+            </div>
+        </div>
+        <div class="hero-image-container">
+            <div class="hero-bg-shape"></div>
+            <img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&q=80&w=800" alt="rasm" class="hero-pen-img">
+        </div>
+    </section>
+
+    <section class="section" id="shop">
+        <div class="section-title">
+            <h2>Ruchkalar Do'koni</h2>
+            <p>Mashhur, ko'p sotilgan, yangi, ommabob, arzon va sifatli ruchkalar to'plami</p>
+        </div>
+
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label>Kategoriya:</label>
+                <select id="typeFilter">
+                    <option value="all">Barchasi</option>
+                    <option value="Mashhur">Mashhur</option>
+                    <option value="Ko'p sotilgan">Ko'p sotilgan</option>
+                    <option value="Yangi">Yangi</option>
+                    <option value="Ommabob">Ommabob</option>
+                    <option value="Arzon">Arzon</option>
+                    <option value="Sifatli">Sifatli</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <div class="product-card" data-id="1" data-category="Mashhur" data-color="Qora" data-price="150000" data-rating="4.8" data-desc="Ofis va kundalik yozishmalar uchun yuqori sifatli peroli ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://office1.bg/assets/0_1005100136_1/large" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Office1 Pro Fountain Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">150,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="2" data-category="Mashhur" data-color="Oltin" data-price="420000" data-rating="4.9" data-desc="Oltin suvi yuritilgan eksklyuziv sovgabop ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://cdn.salla.sa/QpPrR/4e7a0958-98c2-4e8f-8bef-5fdeb3b2bc6e-1000x1000-AL1eV8vMTJpf1OBuPHDZwVwUO0U8aij3yeGOUy5M.jpg" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Salla Luxury Gold Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">420,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="3" data-category="Ko'p sotilgan" data-color="Kumush" data-price="195000" data-rating="4.7" data-desc="Biznesmenlar uchun qulay va silliq yozuvchi model.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrAMocJNT9qY8iQo4SjWsbPpsd9drCaCFJdMqueZAUjQ&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Classic Executive Roller</h3>
+                    <div class="product-info">
+                        <span class="product-price">195,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="4" data-category="Ko'p sotilgan" data-color="Ko'k" data-price="35000" data-rating="4.6" data-desc="Tez quriydigan tiniq ko'k gel siyohli ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3r2QdyJek80l3F-F10HhOgG7Zr4dAgJtwHpEJzFOzfw&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Metro Smooth Gel Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">35,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="5" data-category="Yangi" data-color="Qora" data-price="85000" data-rating="4.5" data-desc="Mustahkam metall korpusli yangi dizayn.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfs3ipRAzGOMUvJjLdj7otYilNRGBt_CX_1Af2ySG8PA&s" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Prestige Metal Ballpen</h3>
+                    <div class="product-info">
+                        <span class="product-price">85,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.5</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="6" data-category="Yangi" data-color="Qora" data-price="230000" data-rating="4.9" data-desc="Mat qora korpusga ega zamonaviy ko'rinishdagi ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHvbDolirYvlIqB4qS1NhkBd6K6s72eTJ0-uusopaeaA&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Elite Dark Edition</h3>
+                    <div class="product-info">
+                        <span class="product-price">230,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.9</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="7" data-category="Ommabob" data-color="Kumush" data-price="120000" data-rating="4.7" data-desc="Xalqaro bozorlarda eng ko'p tanlanadigan ommabob rusumli ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://m.media-amazon.com/images/I/41hdqGjMM+L._AC_UF894,1000_QL80_.jpg" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Amazon Choice Signature</h3>
+                    <div class="product-info">
+                        <span class="product-price">120,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.7</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="8" data-category="Ommabob" data-color="Ko'k" data-price="45000" data-rating="4.4" data-desc="Qulay tugmali mexanizmga ega kundalik ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7vqj3hxzT-jHlzn4LPfu8EiXRQ28aUPEVAMrp2tSQww&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Modern Click Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">45,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.4</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="9" data-category="Arzon" data-color="Qora" data-price="95000" data-rating="4.3" data-desc="Hamyonbop va sifatli megateksa rusumli mahsulot.">
+                <div class="product-img-wrapper">
+                    <img src="https://www.megateksa.com/media/catalog/product/cache/fbb2dc43818756b056bd8caf729c2982/7/8/7812033_1.jpg" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Megateksa Master 781</h3>
+                    <div class="product-info">
+                        <span class="product-price">95,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.3</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="10" data-category="Arzon" data-color="Qizil" data-price="25000" data-rating="4.2" data-desc="Qizil rangli siyohga ega arzon va qulay yozuv quroli.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4fx7oIM3BXwmvubiFInoOFR0ZFMovUb1is3dZeHP_3Q&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Minimalist Soft Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">25,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.2</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="11" data-category="Sifatli" data-color="Ko'k" data-price="15000" data-rating="4.8" data-desc="Germaniya texnologiyasi asosida ishlab chiqarilgan sifatli sharikli ruchka.">
+                <div class="product-img-wrapper">
+                    <img src="https://rukmini1.flixcart.com/image/1500/1500/xif0q/pen/8/5/z/evblue-hauser-germany-original-imahjpvexhjz4y3r.jpeg?q=70" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Hauser Germany Blue</h3>
+                    <div class="product-info">
+                        <span class="product-price">15,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.8</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="12" data-category="Sifatli" data-color="Kumush" data-price="90000" data-rating="4.6" data-desc="Ishonchli va uzoq muddat xizmat qiluvchi sifatli model.">
+                <div class="product-img-wrapper">
+                    <img src="https://www.megateksa.com/media/catalog/product/cache/fbb2dc43818756b056bd8caf729c2982/7/8/7812030_1.jpg" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Megateksa Classic 781</h3>
+                    <div class="product-info">
+                        <span class="product-price">90,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.6</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="13" data-category="Arzon" data-color="Qora" data-price="20000" data-rating="4.3" data-desc="Ofislar uchun maxsus qulay narxdagi to'plam ruchkasi.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSV0BVqTlzv6r2PT_CRibla3oxbOYlz5gGZrwpvytgQVQ&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Universal Office Pen</h3>
+                    <div class="product-info">
+                        <span class="product-price">20,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 4.3</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="14" data-category="Mashhur" data-color="Oltin" data-price="480000" data-rating="5.0" data-desc="Dunyoga mashhur Parker brendining mukammal namunasi.">
+                <div class="product-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&q=80&w=500" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Parker Sonnet Premium</h3>
+                    <div class="product-info">
+                        <span class="product-price">480,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+
+            <div class="product-card" data-id="15" data-category="Mashhur" data-color="Qora" data-price="850000" data-rating="5.0" data-desc="Haqiqiy estetik zavq beruvchi qora qatron korpus.">
+                <div class="product-img-wrapper">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdBPpW3xsVW4qD9l19eCs5405ORTyBB8bILgi1c0Hy2w&s=10" alt="rasm">
+                </div>
+                <div>
+                    <h3 class="product-title">Montblanc Meisterstuck</h3>
+                    <div class="product-info">
+                        <span class="product-price">850,000 so'm</span>
+                        <span class="product-rating"><i class="fa-solid fa-star"></i> 5.0</span>
+                    </div>
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline btn-detail">Batafsil</button>
+                    <button class="btn btn-primary btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-alt" id="history">
+        <div class="section-title">
+            <h2>Ruchkalar Tarixi</h2>
+            <p>Yozuv qurollarining asrlar davomida rivojlanish bosqichlari</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlwfNu6EIYFEIXGSs6VZOynaDrKewUVZr6YMfUACti9Q&s=10" alt="rasm">
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-year">1827-yil</span>
+                    <h3>Peroli Ruchka Ixtirosi</h3>
+                    <p>Ruminiyalik ixtirochi Petrache Poenaru birinchi bo'lib siyoh idishiga ega bo'lgan peroli ruchka uchun patent oldi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROnGDSSHiQv_eMVwh9KrufusNh7xtNXBGwFtqziNavm37aVTEliN7FRzsU&s=10 " alt="rasm">
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-year">1888-yil</span>
+                    <h3>Sharikli Ruchka Patenti</h3>
+                    <p>Jon J. Laud charm va qattiq yuzalarga yozish uchun mo'ljallangan birinchi sharikli ruchka patentini oldi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">
+                    <img src="https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=80&w=600" alt="rasm">
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-year">1938-yil</span>
+                    <h3>Zamonaviy Sharikli Ruchka</h3>
+                    <p>Laslo Biro va uning ukasi Georg qurimaydigan siyoh va aylanuvchi sharik tizimini amaliyotga joriy etishdi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSiHq9iFvckny28sxSlhlnwwhsJNEQx2dQMxhSPuygrw&s=10" alt="rasm">
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-year">1963-yil</span>
+                    <h3>Rollerball Ruchkasi</h3>
+                    <p>Yaponiyaning Ohto kompaniyasi suv asosidagi siyoh bilan ishlaydigan silliq yozuvchi rollerball ruchkasini yaratdi.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsV5sPVnI8yG3bpluip7JAwohphTjQPux07OjVYshnwQ&s=10" alt="rasm">
+                </div>
+                <div class="timeline-content">
+                    <span class="timeline-year">1984-yil</span>
+                    <h3>Gel Ruchkalar Davri</h3>
+                    <p>Sakura Color Products kompaniyasi quyuq va chiroyli yozadigan gel texnologiyasini jahon bozoriga olib kirdi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="delivery">
+        <div class="section-title">
+            <h2>Yetkazib Berish Bosqichlari</h2>
+            <p>Buyurtmangiz tayyorlanishi va manzilingizga yetib borish xarita yo'li</p>
+        </div>
+
+        <div class="map-wrapper-box-styled">
+            <svg class="map-path-svg" viewBox="0 0 1000 300" preserveAspectRatio="none">
+                <path d="M 100 80 Q 300 280 500 150 T 900 120" fill="none" stroke="#6366f1" stroke-width="6" stroke-dasharray="10 6" stroke-linecap="round"/>
+            </svg>
+
+            <div class="map-nodes-styled">
+                <div class="map-node-item node-pos-1">
+                    <div class="node-icon-wrap">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <span>1. Buyurtma qabul qilindi</span>
+                </div>
+
+                <div class="map-node-item node-pos-2">
+                    <div class="node-icon-wrap">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+                    <span>2. Qadoqlandi</span>
+                </div>
+
+                <div class="map-node-item node-pos-3">
+                    <div class="node-icon-wrap">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <span>3. Yo'lda</span>
+                </div>
+
+                <div class="map-node-item node-pos-4">
+                    <div class="node-icon-wrap">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <span>4. Yetkazib berildi</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-alt" id="why-us">
+        <div class="section-title">
+            <h2>Nima Uchun Biz?</h2>
+            <p>Mijozlarimizga taqdim etadigan asosiy afzalliklarimiz</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-award"></i>
+                <h3>100% Asl Sifat</h3>
+                <p>Faqat rasmiy brendlar va kafolatlangan premium materiallar.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Tezkor Yetkazish</h3>
+                <p>O'zbekiston bo'ylab 24 soat ichida eshigingizgacha yetkazib beramiz.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Xavfsiz To'lov</h3>
+                <p>Naqd, Click, Payme va barcha xalqaro kartalar orqali to'lov.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24/7 Qo'llab-quvvatlash</h3>
+                <p>Har qanday savol va muammolar bo'yicha doimiy aloqadamiz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="section-title">
+            <h2>Aloqa va Yangiliklar</h2>
+            <p>Biz bilan bog'laning yoki yangi chegirmalardan xabardor bo'ling</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="newsletter-card">
+                <h3>Yangiliklarga Obuna Bo'ling</h3>
+                <p>Aksiyalar va yangi kelgan eksklyuziv ruchkalar haqida birinchilardan bo'lib biling.</p>
+                <form id="newsletterForm" class="newsletter-form">
+                    <input type="email" id="newsletterEmail" placeholder="Email manzilingizni kiriting" required>
+                    <button type="submit" class="btn btn-primary">Obuna bo'lish</button>
+                </form>
+            </div>
+
+            <div class="contact-info-card">
+                <h3>Bizning Ma'lumotlar</h3>
+                <ul class="contact-list">
+                    <li><i class="fa-solid fa-location-dot"></i> Toshkent sh., Amir Temur ko'chasi, 42-uy</li>
+                    <li><i class="fa-solid fa-envelope"></i> info@ruchka.uz</li>
+                </ul>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <i class="fa-solid fa-pen-nib"></i>
+                    <span>Ruchka Uz</span>
+                </div>
+                <p>Sifatli yozuv qurollari va eksklyuziv aksessuarlarning internet do'koni. O'zbekiston bo'ylab yetkazib berish.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Navigatsiya</h4>
+                <ul>
+                    <li><a href="#home">Bosh sahifa</a></li>
+                    <li><a href="#shop">Do'kon</a></li>
+                    <li><a href="#history">Tarix</a></li>
+                    <li><a href="#delivery">Yetkazib berish</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Mijozlarga Yordam</h4>
+                <ul>
+                    <li><a href="#why-us">Afzalliklarimiz</a></li>
+                    <li><a href="#contact">Aloqa</a></li>
+                    <li><a href="#">Ko'p beriladigan savollar</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Biz Bilan Bog'laning</h4>
+                <p>Savollaringiz bormi? Istalgan vaqtda yozishingiz mumkin.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Ruchka Uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
